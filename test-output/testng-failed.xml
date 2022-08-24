@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.home.testsuite.TC_002_verifyNavigationToCandidate">
+        <methods>
+          <include name="tc_verifyNavigationToCandidate"/>
+          <include name="quiteBrowser"/>
+          <include name="settupApplication"/>
+          <include name="startTestReport"/>
+        </methods>
+      </class> <!-- com.home.testsuite.TC_002_verifyNavigationToCandidate -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

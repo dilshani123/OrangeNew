@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <test name="Test Methods(failed)" parallel="methods">
+    <classes>
+      <class name="com.home.testsuite.TestSuiteOrange">
+        <methods>
+          <include name="tc_002_tc_verifyNavigationToCandidate"/>
+          <include name="closeBrowser"/>
+          <include name="settupApplication"/>
+          <include name="startTestReport"/>
+          <include name="tc_001_tc_loginApplication"/>
+        </methods>
+      </class> <!-- com.home.testsuite.TestSuiteOrange -->
+    </classes>
+  </test> <!-- Test Methods(failed) -->
+</suite> <!-- Failed suite [Suite] -->

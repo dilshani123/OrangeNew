@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--  
+<suite name="Suite" thread-count="2"  parallel="methods"> -->
+<suite name="Suite">
+  <test name="Group Example">
+<groups>
+<run>
+<include name="myTest/"></include>
+</run>
+</groups>
+    <classes>
+    <class name="com.home.testsuite.TestSuiteOrange">
+  <!--   
+      <methods> 
+      <include name="tc_002_tc_verifyNavigationToCandidate"></include>
+      <include name="tc_001_tc_loginApplication"></include>
+      </methods>-->  
+      </class>      
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
