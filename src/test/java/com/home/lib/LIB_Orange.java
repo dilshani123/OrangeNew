@@ -30,11 +30,16 @@ public class LIB_Orange extends TestBase{
 		login.typeUsername(prm_username);
 		test.log(Status.INFO,"Type username value is : "+prm_username +" : in element : "+ PG_Login.ele_userName);
 		
-		login.typePassword2(prm_password);
+	//	login.typePassword2(prm_password);
+		
+		login.setEle_password(prm_password); // encapsulation
+		
 		test.log(Status.INFO,"Type password value is : "+prm_password +":  in element : "+PG_Login.getEle_password());
 		login.clickSignIn();
 		test.log(Status.INFO,"click  signIn button : " +" in element : "+ PG_Login.btn_login);
+		test.log(Status.INFO,"checkWelcome and GetText11 : " + prm_system);
 		login.checkWelcomeandGetText(prm_system);
+		test.log(Status.INFO,"checkWelcome and GetText : " + prm_system);
 	//	Reporter.log("==End  bc_verifyLoginUser == ",true);
 	}
 	public static void bc_verifyLoginUserUsername(String prm_username) {
@@ -42,7 +47,7 @@ public class LIB_Orange extends TestBase{
 		
 		test.log(Status.INFO,"Start  bc_verifyLoginUseiiiiir");
 		login.typeUsername(prm_username);
-		System.out.println(prm_username);
+	
 		test.log(Status.INFO,"Type username value is : "+prm_username +" : in element : "+ PG_Login.ele_userName);
 		System.out.println(prm_username);
 		

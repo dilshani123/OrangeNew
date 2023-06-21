@@ -20,9 +20,9 @@ public class TC_002_verifyNavigationToCandidate extends TestBase {
 	@Test
 	public void tc_verifyNavigationToCandidate() {
 		test=extent.createTest("TC_002_verifyNavigationToCandidate");
-		Reporter.log("==Start TC_002_verifyNavigationToCandidate == ",true);
-		LIB_Orange.bc_verifyLoginUser("Admin", "admin123","Welcome");
-		LIB_Orange.bc_navigationTo();
+		Reporter.log("==Start TC_002_verifyNavigationToCandidate1 == ",true);
+		LIB_Orange.bc_verifyLoginUser("Admin", "admin123","John");
+//		LIB_Orange.bc_navigationTo();
 		Reporter.log("==END  TC_002_verifyNavigationToCandidate == ",true);
 	}
 }

@@ -5,6 +5,7 @@
     <classes>
       <class name="com.home.testsuite.TC_002_verifyNavigationToCandidate">
         <methods>
+          <include name="tearDown"/>
           <include name="tc_verifyNavigationToCandidate"/>
           <include name="quiteBrowser"/>
           <include name="settupApplication"/>

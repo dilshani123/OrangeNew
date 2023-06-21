@@ -10,11 +10,11 @@
 </run>
 </groups>
     <classes>
-    <class name="com.home.testsuite.TestSuiteOrange">
+    <class name="com.home.testsuite.TC_003_verifySearch">
   <!--   
       <methods> 
       <include name="tc_002_tc_verifyNavigationToCandidate"></include>
-      <include name="tc_001_tc_loginApplication"></include>
+     
       </methods>-->  
       </class>      
     </classes>

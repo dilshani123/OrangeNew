@@ -46,7 +46,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Aug 18, 2022 08:04:24 PM</span>
+                    <span class='label suite-start-time blue darken-3'>Jun 21, 2023 04:27:19 PM</span>
 				</a>
 			</li>
 			<li>
@@ -72,6 +72,7 @@
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
 											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+						<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -122,10 +123,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -140,7 +141,7 @@
 					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='28.571%'>2</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='71.429%'>5</span> others
 				</div>
 			</div>
 		</div>
@@ -155,17 +156,17 @@
 			<ul id='test-collection' class='test-collection'>
 				
 				
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>TC_002_verifyNavigationToCandidate</span>
-						<span class='test-time'>Aug 18, 2022 08:04:34 PM</span>
-						<span class='test-status right pass'>pass</span>
+						<span class='test-time'>Jun 21, 2023 04:27:19 PM</span>
+						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Aug 18, 2022 08:04:34 PM</span>
-	<span class='label end-time'>Aug 18, 2022 08:04:34 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+37ms</span>
+	<span class='label start-time'>Jun 21, 2023 04:27:19 PM</span>
+	<span class='label end-time'>Jun 21, 2023 04:27:42 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 22s+647ms</span>
 </div>
 	<div class='test-steps'>
 		<table class='bordered table-results'>
@@ -179,12 +180,45 @@
 			<tbody>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>8:04:34 PM</td>
+					<td class='timestamp'>4:27:19 PM</td>
 					<td class='step-details'>Start  bc_verifyLoginUser</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:27:20 PM</td>
+					<td class='step-details'>Type username value is : Admin : in element : [[ChromeDriver: chrome on WINDOWS (8e46a9755f1334e9fff26c00e4336057)] -> xpath: //input[@name='username']]</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:27:20 PM</td>
+					<td class='step-details'>Type password value is : admin123:  in element : [[ChromeDriver: chrome on WINDOWS (8e46a9755f1334e9fff26c00e4336057)] -> xpath: //input[@name='password']]</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:27:42 PM</td>
+					<td class='step-details'>click  signIn button :  in element : Proxy element for: DefaultElementLocator 'By.xpath: //form[@class='oxd-form']/child::div/button'</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:27:42 PM</td>
+					<td class='step-details'>checkWelcome and GetText11 : John</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>4:27:42 PM</td>
+					<td class='step-details'>TEST CASE FAILED IS tc_verifyNavigationToCandidate</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>4:27:42 PM</td>
+					<td class='step-details'>TEST CASE FAILED IS java.lang.AssertionError: expected [John] but found [FIBKYYC]</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='E:\OrangeWeb\OrangeWeb/Screenshots/tc_verifyNavigationToCandidate20230621042742.png' width='10%' src='E:\OrangeWeb\OrangeWeb/Screenshots/tc_verifyNavigationToCandidate20230621042742.png' data-src='E:\OrangeWeb\OrangeWeb/Screenshots/tc_verifyNavigationToCandidate20230621042742.png'></li>
+							</ul>
 					</div>
 				</li>
 			</ul>
@@ -228,25 +262,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>7</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Aug 18, 2022 08:04:24 PM</div>
+					<div class='panel-lead'>Jun 21, 2023 04:27:19 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Aug 18, 2022 08:05:15 PM</div>
+			 		<div class='panel-lead'>Jun 21, 2023 04:27:43 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 0m 50s+670ms</div>
+					<div class='panel-lead'>0h 0m 23s+906ms</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -287,22 +321,22 @@
 
 		<script>
 			var statusGroup = {
-				passParent: 1,
-				failParent: 0,
+				passParent: 0,
+				failParent: 1,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				exceptionsParent: 0,
+				exceptionsParent: 1,
 				
 				passChild: 0,
-				failChild: 0,
+				failChild: 2,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
-				infoChild: 1,
-				exceptionsChild: 0,
+				infoChild: 5,
+				exceptionsChild: 2,
 				
 				passGrandChild: 0,
 				failGrandChild: 0,

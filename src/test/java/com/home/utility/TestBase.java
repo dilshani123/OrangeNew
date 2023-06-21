@@ -1,17 +1,27 @@
+
 package com.home.utility;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -37,6 +47,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import jxl.read.biff.BiffException;
 
 public class TestBase {
 
@@ -50,7 +61,7 @@ public class TestBase {
 	public static Connection con1;
 	
 	
-	@BeforeTest
+	@BeforeClass
 	public void startTestReport() {
 		htmlReporter=new ExtentHtmlReporter(userDir +"/test-output/myReportResult.html");
 		htmlReporter.config().setDocumentTitle("Automation Report");
@@ -65,19 +76,23 @@ public class TestBase {
 		extent.setSystemInfo("Browser", "Chrome");
 	}
 	
-	protected static String getDataFromPropertyFile(String key) throws Exception {
+	public static String getDataFromPropertyFile(String key) throws Exception {
 		FileReader reader = new FileReader(userDir + "//runtime.properties");
 		Properties p = new Properties();
 		p.load(reader);
 		return p.getProperty(key).toString();
 	}
 
-	@BeforeMethod (alwaysRun = true)
+	@BeforeTest (alwaysRun = true)
 	public void settupApplication() throws Exception {
 		String browser = getDataFromPropertyFile("browser");
 		if (browser.contains("chrome")) {
+			// System.setProperty("webdriver.chrome.driver","D:\\EclipseWorkspace\\Ebay\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			 ChromeOptions option = new ChromeOptions();
+	            option.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(option);
+			 
 		} else if (browser.contains("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
@@ -85,6 +100,7 @@ public class TestBase {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
+		System.setProperty("webdriver.http.factory", "jdk-http-client");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.get(getDataFromPropertyFile("URL"));
@@ -93,28 +109,46 @@ public class TestBase {
      //   System.out.println("Domain is: "+domainName);
 		//waitTillPageLoad();
 	}
+	@AfterMethod
 public static void tearDown(ITestResult result)throws IOException{
 	if(result.getStatus()==ITestResult.FAILURE) {
 		test.log(Status.FAIL,"TEST CASE FAILED IS " + result.getName());
 		test.log(Status.FAIL,"TEST CASE FAILED IS " + result.getThrowable());
+		String screenshotPath = TestBase.getScreenshot(driver, result.getName());
+		
+		test.addScreenCaptureFromPath(screenshotPath);
 	}
 	else if (result.getStatus()==ITestResult.SKIP) {
 		test.log(Status.SKIP,"TEST CASE SKIP IS " + result.getName());
 }else if (result.getStatus()==ITestResult.SUCCESS) {
 	test.log(Status.PASS,"TEST CASE SUCCESS IS " + result.getName());
+	String screenshotPath = TestBase.getScreenshot(driver, result.getName());
+	
+	test.addScreenCaptureFromPath(screenshotPath);
 }
 }
-
+public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
+	String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+	TakesScreenshot ts=(TakesScreenshot) driver;
+	File source = ts.getScreenshotAs(OutputType.FILE);
+	
+String destination= System.getProperty("user.dir") + "/Screenshots/" + screenshotName + dateName + ".png";	
+	File finalDestination = new File(destination);
+	FileUtils.copyFile(source, finalDestination);
+	return destination;
+}
 @AfterSuite
 	public static void quiteBrowser() {
 	SessionId s = ((RemoteWebDriver) driver).getSessionId();
 	System.out.println("Session Id is : " + s);
 	   if(driver != null) {
-		//driver.close();
+		driver.close();
 		driver.quit();
 		System.out.println("Session id  closed 123");
 		  extent.flush();
 		  System.out.println("Session id closed 1234");
+	   }else {
+		   driver.quit();
 	   }
 	}/*
 public static void closeBrowser() {
@@ -124,7 +158,35 @@ public static void closeBrowser() {
 		 
 	   
 	}*/
+public String[][] getExcelData(String fileName, String sheetName) {
+	String[][] arrayExcelData = null;
+	try {
+		FileInputStream fs = new FileInputStream(fileName);
+		jxl.Workbook wb = jxl.Workbook.getWorkbook(fs);
+		jxl.Sheet sh = wb.getSheet(sheetName);
 
+		int totalNoOfCols = sh.getColumns();
+		int totalNoOfRows = sh.getRows();
+		
+		arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+		
+		for (int i= 1 ; i < totalNoOfRows; i++) {
+
+			for (int j=0; j < totalNoOfCols; j++) {
+				arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+			}
+
+		}
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+		e.printStackTrace();
+	} catch (BiffException e) {
+		e.printStackTrace();
+	}
+	return arrayExcelData;
+}
 	public static void waitTillPageLoad() {
 		try {
 			retry = Integer.parseInt(getDataFromPropertyFile("retry"));
